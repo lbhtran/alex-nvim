@@ -38,9 +38,9 @@ function M.setup()
 
     -- Colorscheme
     use {
-      "sainnhe/everforest",
+      "folke/tokyonight.nvim",
       config = function()
-        vim.cmd "colorscheme everforest"
+        vim.cmd "colorscheme tokyonight"
       end,
     }
 
@@ -59,6 +59,14 @@ function M.setup()
       config = function()
         require("config.neogit").setup()
       end,
+    }
+
+    -- WhichKey
+    use {
+       "folke/which-key.nvim",
+       config = function()
+         require("config.whichkey").setup()
+       end,
     }
 
     if packer_bootstrap then

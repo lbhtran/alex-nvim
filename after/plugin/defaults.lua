@@ -16,13 +16,17 @@ opt.guicursor = "" -- Set fat cursor
 opt.smartindent = true 
 opt.wrap = false -- Disable linewrap
 opt.undofile = true --Save undo history
+
 opt.ignorecase = true --Case insensitive searching unless /C or capital in search
 opt.smartcase = true -- Smart case
-opt.updatetime = 250 --Decrease update time
+
 opt.scrolloff = 8 --Start scrolling 8 lines from bottom
 opt.signcolumn = "yes" -- Always show sign column
 opt.clipboard = "unnamedplus" -- Access system clipboard
 opt.colorcolumn = "90"
+
+opt.updatetime = 250 --Decrease update time
+opt.timeoutlen = 300 -- time to wait for a mapped sequence to complete
 
 opt.errorbells = false -- Disable error bells
 
