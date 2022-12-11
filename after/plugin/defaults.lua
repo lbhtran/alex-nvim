@@ -30,6 +30,10 @@ opt.timeoutlen = 300 -- time to wait for a mapped sequence to complete
 
 opt.errorbells = false -- Disable error bells
 
+-- Configure file search path
+opt.path:remove "/usr/include"
+opt.path:append "**"
+
 -- Highlight on yank
 vim.cmd [[
   augroup YankHighlight
