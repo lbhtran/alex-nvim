@@ -12,7 +12,7 @@ function M.setup()
 		},
 		display = {
 			open_fn = function()
-				return require("packer.util").float({ border = "rounded" })
+				return require("packer.util").float { border = "rounded" }
 			end,
 		},
 	}
@@ -21,166 +21,166 @@ function M.setup()
 	-- Run PackerCompile if there are changes in this file
 	local function packer_init()
 		local fn = vim.fn
-		local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+		local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
 		if fn.empty(fn.glob(install_path)) > 0 then
-			packer_bootstrap = fn.system({
+			packer_bootstrap = fn.system {
 				"git",
 				"clone",
 				"--depth",
 				"1",
 				"https://github.com/wbthomason/packer.nvim",
 				install_path,
-			})
-			vim.cmd([[packadd packer.nvim]])
+			}
+			vim.cmd [[packadd packer.nvim]]
 		end
-		vim.cmd("autocmd BufWritePost plugins.lua source <afile> | PackerCompile")
+		vim.cmd "autocmd BufWritePost plugins.lua source <afile> | PackerCompile"
 	end
 
 	-- Plugins
 	local function plugins(use)
-		use({ "wbthomason/packer.nvim" })
+		use { "wbthomason/packer.nvim" }
 
 		-- Colorscheme
-		use({
+		use {
 			"folke/tokyonight.nvim",
 			config = function()
-				vim.cmd("colorscheme tokyonight")
+				vim.cmd "colorscheme tokyonight"
 			end,
-		})
+		}
 
 		-- Startup screen
-		use({
+		use {
 			"goolord/alpha-nvim",
 			config = function()
 				require("config.alpha").setup()
 			end,
-		})
+		}
 
 		-- Load only when require
-		use({ "nvim-lua/plenary.nvim", module = "plenary" })
+		use { "nvim-lua/plenary.nvim", module = "plenary" }
 
 		-- Better icons
-		use({
+		use {
 			"kyazdani42/nvim-web-devicons",
 			module = "nvim-web-devicons",
 			config = function()
-				require("nvim-web-devicons").setup({ default = true })
+				require("nvim-web-devicons").setup { default = true }
 			end,
-		})
+		}
 
 		-- Better Comment
-		use({
+		use {
 			"numToStr/Comment.nvim",
 			opt = true,
 			keys = { "gc", "gcc", "gbc" },
 			config = function()
-				require("Comment").setup({})
+				require("Comment").setup {}
 			end,
-		})
+		}
 
 		-- Easy hopping
-		use({
+		use {
 			"phaazon/hop.nvim",
 			cmd = { "HopWord", "HopChar1" },
 			config = function()
-				require("hop").setup({})
+				require("hop").setup {}
 			end,
-		})
+		}
 
 		-- Easy motion
-		use({
+		use {
 			"ggandor/lightspeed.nvim",
 			keys = { "s", "S", "f", "F", "t", "T" },
 			config = function()
-				require("lightspeed").setup({})
+				require("lightspeed").setup {}
 			end,
-		})
+		}
 
 		-- Markdown
-		use({
+		use {
 			"iamcco/markdown-preview.nvim",
 			run = function()
 				vim.fn["mkdp#util#install"]()
 			end,
 			ft = "markdown",
 			cmd = { "MarkdownPreview" },
-		})
+		}
 
 		-- Autosave
-		use({
+		use {
 			"Pocco81/auto-save.nvim",
 			config = function()
-				require("auto-save").setup({})
+				require("auto-save").setup {}
 			end,
-		})
+		}
 
 		-- Git
-		use({
+		use {
 			"TimUntersberger/neogit",
 			cmd = "Neogit",
 			requires = "nvim-lua/plenary.nvim",
 			config = function()
 				require("config.neogit").setup()
 			end,
-		})
+		}
 
-        -- Gitsign
-        use {
-            "lewis6991/gitsigns.nvim",
-            event = "BufReadPre",
-            wants = "plenary.nvim",
-            requires = { "nvim-lua/plenary.nvim" },
-            config = function()
-                require("config.gitsigns").setup()
-            end,
-        }
+		-- Gitsign
+		use {
+			"lewis6991/gitsigns.nvim",
+			event = "BufReadPre",
+			wants = "plenary.nvim",
+			requires = { "nvim-lua/plenary.nvim" },
+			config = function()
+				require("config.gitsigns").setup()
+			end,
+		}
 
 		-- WhichKey
-		use({
+		use {
 			"folke/which-key.nvim",
 			event = "VimEnter",
 			config = function()
 				require("config.whichkey").setup()
 			end,
-		})
+		}
 
 		-- IndentLine
-		use({
+		use {
 			"lukas-reineke/indent-blankline.nvim",
 			event = "BufReadPre",
 			config = function()
 				require("config.indentblankline").setup()
 			end,
-		})
+		}
 
 		-- Lualine
-		use({
+		use {
 			"nvim-lualine/lualine.nvim",
 			event = "VimEnter",
 			config = function()
 				require("config.lualine").setup()
 			end,
 			requires = { "nvim-web-devicons" },
-		})
+		}
 
 		-- Nvim GPS
-		use({
+		use {
 			"SmiteshP/nvim-gps",
 			requires = "nvim-treesitter/nvim-treesitter",
 			module = "nvim-gps",
 			config = function()
 				require("nvim-gps").setup()
 			end,
-		})
+		}
 
 		-- Treesitter
-		use({
+		use {
 			"nvim-treesitter/nvim-treesitter",
 			run = ":TSUpdate",
 			config = function()
 				require("config.treesitter").setup()
 			end,
-		})
+		}
 
 		-- Fuzzy search - fzf
 		-- use { "junegunn/fzf", run = "./install --all" }
@@ -190,7 +190,7 @@ function M.setup()
 		-- }
 
 		-- nvim-tree
-		use({
+		use {
 			"kyazdani42/nvim-tree.lua",
 			requires = {
 				"kyazdani42/nvim-web-devicons",
@@ -200,7 +200,7 @@ function M.setup()
 			config = function()
 				require("config.nvimtree").setup()
 			end,
-		})
+		}
 
 		-- Buffer line
 		--use {
@@ -213,7 +213,7 @@ function M.setup()
 		--}
 
 		-- nvim-cmp
-		use({
+		use {
 			"hrsh7th/nvim-cmp",
 			event = "InsertEnter",
 			opt = true,
@@ -243,37 +243,37 @@ function M.setup()
 				"rafamadriz/friendly-snippets",
 				disable = false,
 			},
-		})
+		}
 
 		-- Auto pairs
-		use({
+		use {
 			"windwp/nvim-autopairs",
 			wants = "nvim-treesitter",
 			module = { "nvim-autopairs.completion.cmp", "nvim-autopairs" },
 			config = function()
 				require("config.autopairs").setup()
 			end,
-		})
+		}
 
 		-- Auto tag
-		use({
+		use {
 			"windwp/nvim-ts-autotag",
 			wants = "nvim-treesitter",
 			event = "InsertEnter",
 			config = function()
-				require("nvim-ts-autotag").setup({ enable = true })
+				require("nvim-ts-autotag").setup { enable = true }
 			end,
-		})
+		}
 
 		-- End wise
-		use({
+		use {
 			"RRethy/nvim-treesitter-endwise",
 			wants = "nvim-treesitter",
 			event = "InsertEnter",
-		})
+		}
 
 		-- LSP
-		use({
+		use {
 			"neovim/nvim-lspconfig",
 			opt = true,
 			event = "BufReadPre",
@@ -290,14 +290,14 @@ function M.setup()
 				{
 					"j-hui/fidget.nvim",
 					config = function()
-						require("fidget").setup({})
+						require("fidget").setup {}
 					end,
 				},
 			},
-		})
+		}
 
 		-- Telescope
-		use({
+		use {
 			"nvim-telescope/telescope.nvim",
 			opt = true,
 			config = function()
@@ -325,21 +325,43 @@ function M.setup()
 				{
 					"ahmedkhalf/project.nvim",
 					config = function()
-						require("project_nvim").setup({})
+						require("project_nvim").setup {}
 					end,
 				},
 			},
-		})
+		}
+		-- trouble.nvim
+		use {
+			"folke/trouble.nvim",
+			event = "BufReadPre",
+			wants = "nvim-web-devicons",
+			cmd = { "TroubleToggle", "Trouble" },
+			config = function()
+				require("trouble").setup {
+					use_diagnostic_signs = true,
+				}
+			end,
+		}
+
+		-- lspsaga.nvim
+		use {
+			"tami5/lspsaga.nvim",
+			event = "VimEnter",
+			cmd = { "Lspsaga" },
+			config = function()
+				require("lspsaga").setup {}
+			end,
+		}
 
 		if packer_bootstrap then
-			print("Restart Neovim required after installation!")
+			print "Restart Neovim required after installation!"
 			require("packer").sync()
 		end
 	end
 
 	packer_init()
 
-	local packer = require("packer")
+	local packer = require "packer"
 	packer.init(conf)
 	packer.startup(plugins)
 end

@@ -1,7 +1,7 @@
 local M = {}
 
 function M.setup()
-	local whichkey = require("which-key")
+	local whichkey = require "which-key"
 
 	local conf = {
 		window = {

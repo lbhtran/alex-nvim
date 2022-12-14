@@ -6,7 +6,7 @@ function M.setup()
 		return
 	end
 
-	local dashboard = require("alpha.themes.dashboard")
+	local dashboard = require "alpha.themes.dashboard"
 	local function header()
 		return {
 			[[                                                ]],
@@ -40,11 +40,11 @@ function M.setup()
 	local function footer()
 		-- Number of plugins
 		local total_plugins = #vim.tbl_keys(packer_plugins)
-		local datetime = os.date("%d-%m-%Y  %H:%M:%S")
+		local datetime = os.date "%d-%m-%Y  %H:%M:%S"
 		local plugins_text = "\t" .. total_plugins .. " plugins  " .. datetime
 
 		-- Quote
-		local fortune = require("alpha.fortune")
+		local fortune = require "alpha.fortune"
 		local quote = table.concat(fortune(), "\n")
 
 		return plugins_text .. "\n" .. quote

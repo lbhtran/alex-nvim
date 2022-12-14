@@ -21,7 +21,7 @@ end
 
 local function lsp_client(msg)
 	msg = msg or ""
-	local buf_clients = vim.lsp.get_active_clients({ bufnr = 0 })
+	local buf_clients = vim.lsp.get_active_clients { bufnr = 0 }
 
 	if next(buf_clients) == nil then
 		if type(msg) == "boolean" or #msg == 0 then
@@ -41,22 +41,22 @@ local function lsp_client(msg)
 	end
 
 	-- add formatter
-	local formatters = require("config.lsp.null-ls.formatters")
+	local formatters = require "config.lsp.null-ls.formatters"
 	local supported_formatters = formatters.list_registered(buf_ft)
 	vim.list_extend(buf_client_names, supported_formatters)
 
 	-- add linter
-	local linters = require("config.lsp.null-ls.linters")
+	local linters = require "config.lsp.null-ls.linters"
 	local supported_linters = linters.list_registered(buf_ft)
 	vim.list_extend(buf_client_names, supported_linters)
 
 	-- add hover
-	local hovers = require("config.lsp.null-ls.hovers")
+	local hovers = require "config.lsp.null-ls.hovers"
 	local supported_hovers = hovers.list_registered(buf_ft)
 	vim.list_extend(buf_client_names, supported_hovers)
 
 	-- add code action
-	local code_actions = require("config.lsp.null-ls.code_actions")
+	local code_actions = require "config.lsp.null-ls.code_actions"
 	local supported_code_actions = code_actions.list_registered(buf_ft)
 	vim.list_extend(buf_client_names, supported_code_actions)
 
@@ -88,9 +88,9 @@ end
 
 -- nvim-gps
 function M.setup()
-	local gps = require("nvim-gps")
+	local gps = require "nvim-gps"
 
-	require("lualine").setup({
+	require("lualine").setup {
 		options = {
 			icons_enabled = true,
 			theme = "auto",
@@ -135,7 +135,7 @@ function M.setup()
 		},
 		tabline = {},
 		extensions = {},
-	})
+	}
 end
 
 return M

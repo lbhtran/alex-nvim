@@ -1,7 +1,7 @@
 local M = {}
 
 function M.setup()
-	require("nvim-tree").setup({
+	require("nvim-tree").setup {
 		disable_netrw = true,
 		hijack_netrw = true,
 		view = {
@@ -10,14 +10,14 @@ function M.setup()
 		},
 		filters = {
 			custom = { ".git" },
-            dotfiles = false,
+			dotfiles = false,
 		},
 		update_cwd = true,
 		update_focused_file = {
 			enable = true,
 			update_cwd = true,
 		},
-	})
+	}
 
 	vim.g.nvim_tree_respect_buf_cwd = 1
 end

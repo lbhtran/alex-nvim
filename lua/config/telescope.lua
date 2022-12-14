@@ -1,12 +1,12 @@
 local M = {}
 
 function M.setup()
-	local actions = require("telescope.actions")
-	local telescope = require("telescope")
+	local actions = require "telescope.actions"
+	local telescope = require "telescope"
 
 	-- Custom previewer
-	local previewers = require("telescope.previewers")
-	local Job = require("plenary.job")
+	local previewers = require "telescope.previewers"
+	local Job = require "plenary.job"
 	local preview_maker = function(filepath, bufnr, opts)
 		filepath = vim.fn.expand(filepath)
 		Job:new({
@@ -36,7 +36,7 @@ function M.setup()
 		}):sync()
 	end
 
-	telescope.setup({
+	telescope.setup {
 		defaults = {
 			buffer_previewer_maker = preview_maker,
 			mappings = {
@@ -48,13 +48,13 @@ function M.setup()
 				},
 			},
 		},
-	})
+	}
 
-	telescope.load_extension("fzf")
-	telescope.load_extension("project") -- telescope-project.nvim
-	telescope.load_extension("repo")
-	telescope.load_extension("file_browser")
-	telescope.load_extension("projects") -- project.nvim
+	telescope.load_extension "fzf"
+	telescope.load_extension "project" -- telescope-project.nvim
+	telescope.load_extension "repo"
+	telescope.load_extension "file_browser"
+	telescope.load_extension "projects" -- project.nvim
 end
 
 return M

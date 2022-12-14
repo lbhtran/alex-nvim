@@ -1,6 +1,6 @@
 local M = {}
 
-local whichkey = require("which-key")
+local whichkey = require "which-key"
 
 local keymap = vim.api.nvim_set_keymap
 local buf_keymap = vim.api.nvim_buf_set_keymap
@@ -19,10 +19,15 @@ local function keymappings(client, bufnr)
 	local keymap_l = {
 		l = {
 			name = "Code",
-			r = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" },
-			a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Action" },
-			d = { "<cmd>lua vim.diagnostic.open_float()<CR>", "Line Diagnostics" },
+			R = { "<cmd>Trouble lsp_references<cr>", "Trouble References" },
+			a = { "<cmd>Lspsaga code_action<CR>", "Code Action" },
+			d = { "<cmd>Telescope diagnostics<CR>", "Diagnostics" },
+			f = { "<cmd>Lspsaga lsp_finder<CR>", "Finder" },
 			i = { "<cmd>LspInfo<CR>", "Lsp Info" },
+			n = { "<cmd>Lspsaga rename<CR>", "Rename" },
+			r = { "<cmd>Telescope lsp_references<CR>", "Diagnostics" },
+			s = { "<cmd>Telescope lsp_document_symbols<CR>", "Diagnostics" },
+			t = { "<cmd>TroubleToggle<CR>", "Trouble" },
 		},
 	}
 
