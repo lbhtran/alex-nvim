@@ -10,6 +10,7 @@ function M.setup()
 		},
 		filters = {
 			custom = { ".git" },
+            dotfiles = false,
 		},
 		update_cwd = true,
 		update_focused_file = {

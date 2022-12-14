@@ -124,6 +124,17 @@ function M.setup()
 			end,
 		})
 
+        -- Gitsign
+        use {
+            "lewis6991/gitsigns.nvim",
+            event = "BufReadPre",
+            wants = "plenary.nvim",
+            requires = { "nvim-lua/plenary.nvim" },
+            config = function()
+                require("config.gitsigns").setup()
+            end,
+        }
+
 		-- WhichKey
 		use({
 			"folke/which-key.nvim",
