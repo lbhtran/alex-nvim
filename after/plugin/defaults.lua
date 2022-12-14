@@ -17,7 +17,7 @@ opt.number = true --Make line numbers default
 opt.relativenumber = true --Make relative number default
 opt.mouse = "a" --Enable mouse mode
 opt.guicursor = "" -- Set fat cursor
-opt.smartindent = true 
+opt.smartindent = true
 opt.wrap = false -- Disable linewrap
 opt.undofile = true --Save undo history
 
@@ -35,13 +35,13 @@ opt.timeoutlen = 300 -- time to wait for a mapped sequence to complete
 opt.errorbells = false -- Disable error bells
 
 -- Configure file search path
-opt.path:remove "/usr/include"
-opt.path:append "**"
+opt.path:remove("/usr/include")
+opt.path:append("**")
 
 -- Highlight on yank
-vim.cmd [[
+vim.cmd([[
   augroup YankHighlight
     autocmd!
     autocmd TextYankPost * silent! lua vim.highlight.on_yank()
   augroup end
-]]
+]])
