@@ -13,12 +13,22 @@ function M.setup(servers, options)
                 local opts = vim.tbl_deep_extend("force", options, servers[server.name] or {})
 
                 if server.name == "sumneko_lua" then
-                    local lua_opts = vim.tbl_deep_extend("force", options, servers["sumneko_lua"] or {})
+                    -- opts = vim.tbl_deep_extend("force", options, servers["sumneko_lua"] or {})
                     require("neodev").setup {}
-                    lspconfig.sumneko_lua.setup(lua_opts)
+                    lspconfig.sumneko_lua.setup(opts)
                 end
 
-                server:setup(opts)
+                -- https://github.com/williamboman/nvim-lsp-installer/wiki/Rust
+                if server.name == "rust_analyzer" then
+                    require("rust-tools").setup {
+                        server = vim.tbl_deep_extend("force", server:get_default_options(), opts),
+                    }
+                    server:attach_buffers()
+                else
+                    server:setup(opts)
+                end
+
+                utils.info(server.name .. " is ready.")
             end)
 
             if not server:is_installed() then

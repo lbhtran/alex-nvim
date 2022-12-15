@@ -22,6 +22,7 @@ local sources = {
     -- formatting
     b.formatting.prettierd,
     b.formatting.shfmt,
+    b.formatting.rustfmt,
     b.formatting.fixjson,
     b.formatting.black.with { extra_args = { "--fast" } },
     b.formatting.isort,

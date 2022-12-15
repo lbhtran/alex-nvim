@@ -5,7 +5,17 @@ local servers = {
     html = {},
     jsonls = {},
     pyright = {},
-    rust_analyzer = {},
+    rust_analyzer = {
+        settings = {
+            ["rust-analyzer"] = {
+                cargo = { allFeatures = true },
+                checkOnSave = {
+                    command = "cargo clippy",
+                    extraArgs = { "--no-deps" },
+                },
+            },
+        },
+    },
     sumneko_lua = {
         settings = {
             Lua = {
@@ -17,7 +27,7 @@ local servers = {
                 },
                 diagnostics = {
                     -- Get the language server to recognize the `vim` global
-                    globals = { "vim" },
+                    globals = { "vim", "describe", "it", "before_each", "after_each", "packer_plugins", "MiniTest" },
                 },
                 workspace = {
                     -- Make the server aware of Neovim runtime files
@@ -25,12 +35,17 @@ local servers = {
                         [vim.fn.expand "$VIMRUNTIME/lua"] = true,
                         [vim.fn.expand "$VIMRUNTIME/lua/vim/lsp"] = true,
                     },
+                    maxPreload = 2000,
+                    preloadFileSize = 50000,
                 },
             },
         },
     },
     tsserver = {},
     vimls = {},
+    yamlls = {},
+    dockerls = {},
+    bashls = {},
     taplo = {},
 }
 
@@ -45,6 +60,9 @@ local function on_attach(client, bufnr)
 
     -- Configure key mappings
     require("config.lsp.keymaps").setup(client, bufnr)
+
+    -- Configure formatting
+    require("config.lsp.null-ls.formatters").setup(client, bufnr)
 end
 
 -- local lsp_signature = require "lsp_signature"
