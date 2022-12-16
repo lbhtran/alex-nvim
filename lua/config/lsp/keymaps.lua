@@ -28,6 +28,8 @@ local function keymappings(client, bufnr)
             r = { "<cmd>Telescope lsp_references<CR>", "Diagnostics" },
             s = { "<cmd>Telescope lsp_document_symbols<CR>", "Diagnostics" },
             t = { "<cmd>TroubleToggle<CR>", "Trouble" },
+            l = { "<cmd>lua require('config.lsp.null-ls.formatters').toggle()<cr>", "Toggle Autoformat"},
+            k = { "<cmd>lua vim.lsp.buf.formatting_sync(nil, 10000)<cr>", "Apply Autoformat"}
         },
     }
 

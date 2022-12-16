@@ -24,8 +24,8 @@ local sources = {
     b.formatting.shfmt,
     b.formatting.rustfmt,
     b.formatting.fixjson,
-    b.formatting.black.with { extra_args = { "--fast" } },
     b.formatting.isort,
+    b.formatting.black.with { extra_args = { "--fast" } },
     with_root_file(b.formatting.stylua, "stylua.toml"),
 
     -- diagnostics
@@ -43,6 +43,7 @@ local sources = {
 
     -- hover
     b.hover.dictionary,
+    b.hover.printenv,
 }
 
 function M.setup(opts)
