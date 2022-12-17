@@ -13,6 +13,9 @@ local servers = {
                     command = "cargo clippy",
                     extraArgs = { "--no-deps" },
                 },
+                -- cmd = {
+                --     "rustup", "run", "nightly", "rust-analyzer"
+                -- }
             },
         },
     },

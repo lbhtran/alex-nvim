@@ -38,6 +38,13 @@ function M.setup()
         nowait = false, -- use `nowait` when creating keymaps
     }
 
+    local v_opts = {
+        mode = "v", -- Visual mode
+        prefix = "<leader>",
+        silent = true, -- use `silent` when creating keymaps
+        noremap = true, -- use `noremap` when creating keymaps
+    }
+
     local mappings = {
         ["w"] = { "<cmd>update!<CR>", "Save" },
         ["q"] = { "<cmd>q!<CR>", "Quit" },
@@ -84,8 +91,16 @@ function M.setup()
         p = keymaps_p,
     }
 
+    local v_mappings = {
+        n = {
+            name = "AI Codex",
+            g = { "<cmd>lua require'utils.codex'.complete()<cr>", "AI - Generate Codes" },
+        },
+    }
+
     whichkey.setup(conf)
     whichkey.register(mappings, opts)
+    whichkey.register(v_mappings, v_opts)
 end
 
 return M

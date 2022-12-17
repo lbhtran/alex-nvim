@@ -301,12 +301,22 @@ function M.setup()
             opt = true,
             event = "BufReadPre",
             -- wants = { "cmp-nvim-lsp", "nvim-lsp-installer", "lsp_signature.nvim", "neodev.nvim" },
-            wants = { "cmp-nvim-lsp", "nvim-lsp-installer", "neodev.nvim", "null-ls.nvim" },
+            wants = {
+                "cmp-nvim-lsp",
+                "mason.nvim",
+                "mason-lspconfig.nvim",
+                "mason-tool-installer.nvim",
+                "neodev.nvim",
+                "null-ls.nvim",
+            },
             config = function()
                 require("config.lsp").setup()
             end,
             requires = {
                 "williamboman/nvim-lsp-installer",
+                "williamboman/mason.nvim",
+                "williamboman/mason-lspconfig.nvim",
+                "WhoIsSethDaniel/mason-tool-installer.nvim",
                 "jose-elias-alvarez/null-ls.nvim",
                 -- "ray-x/lsp_signature.nvim",
                 "folke/neodev.nvim",
